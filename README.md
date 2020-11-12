@@ -326,7 +326,7 @@ business_number: {"value": 514713288, "confidence": "high"}
 
 The full example code is available here:
 
-[Image / Web Image Upload](https://github.com/tommyil/gemina-examples/blob/master/image_example.py)
+[Image / Web Image Upload](https://github.com/tommyil/gemina-examples-cs/blob/master/Program.cs)
 
 
 
