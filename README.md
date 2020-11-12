@@ -1,4 +1,4 @@
-# Gemina API - Quick Implementation Guide
+# Gemina API - Quick Implementation Guide - C#
 
 
 
@@ -300,9 +300,9 @@ while (webResponse.StatusCode == 202 || webResponse.StatusCode == 404);
 
 ```bash
 Can't find image. Let's give it 1 seconds to create before we try again...
-Image is still being processed.Sleeping for 1 second before the next attempt.
-Image is still being processed.Sleeping for 1 second before the next attempt.
-Image is still being processed.Sleeping for 1 second before the next attempt.
+Image is still being processed. Sleeping for 1 second before the next attempt.
+Image is still being processed. Sleeping for 1 second before the next attempt.
+Image is still being processed. Sleeping for 1 second before the next attempt.
 Successfully retrieved Prediction for Invoice Image ex_id_f4266697-d57e-4e16-a213-fb1f544148f0:
 
 external_id: ex_id_f4266697-d57e-4e16-a213-fb1f544148f0
