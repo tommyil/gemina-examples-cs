@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net.Http.Headers;
+using System.Net;
 
 namespace GeminaCSExamples
 {
@@ -103,6 +104,8 @@ namespace GeminaCSExamples
                 { "file", Convert.ToBase64String(fileContent)},
             };
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -148,6 +151,8 @@ namespace GeminaCSExamples
                 { "external_id", invoiceId },
                 { "url", invoiceURL},
             };
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             using (var httpClient = new HttpClient())
             {
