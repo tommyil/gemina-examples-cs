@@ -73,6 +73,8 @@ public static async Task<WebResponse> UploadImage(string invoicePath, string inv
         { "file", Convert.ToBase64String(fileContent)},
     };
 
+    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
     using (var httpClient = new HttpClient())
     {
         httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -124,6 +126,8 @@ public static async Task<WebResponse> UploadWebImage(string invoiceURL, string i
         { "external_id", invoiceId },
         { "url", invoiceURL},
     };
+
+    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
     using (var httpClient = new HttpClient())
     {
@@ -220,6 +224,8 @@ public static async Task<WebResponse> GetPrediction(string imageId)
 {
     var url = $"{GEMINA_API_URL}{BUSINESS_DOCUMENTS_URL}/{imageId}";
     var token = $"Basic {API_KEY}"; //  Mind the space between 'Basic' and the API KEY
+
+    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
     using (var httpClient = new HttpClient())
     {
