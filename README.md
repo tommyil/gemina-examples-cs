@@ -342,7 +342,7 @@ This will help to avoid situations where the Client's Tax Id is mistakenly inter
 To do so, add the following line to the Dictionary (that is, to your Json):
 
 ```c#
-`{ "client_business_number", "== Your Client's Business Number =="},`
+{ "client_business_number", "== Your Client's Business Number =="},
 ```
 
 ------
