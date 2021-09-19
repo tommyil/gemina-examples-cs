@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Http.Headers;
 using System.Net;
+using System.Text.Json.Serialization;
 
 namespace GeminaCSExamples
 {
@@ -80,6 +81,7 @@ namespace GeminaCSExamples
                     case 200:
                         Console.WriteLine($"Successfully retrieved Prediction for Invoice Image {invoiceId}:");
                         PrintJson(webResponse.Data);
+                        Console.WriteLine($"The Prediction Object Data is stored in this object: {webResponse.Prediction}");
                         break;
 
                     default:
@@ -172,16 +174,16 @@ namespace GeminaCSExamples
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
 
-                        Dictionary<string, object> deserializedObject = null;
+                        Dictionary<string, object> deserializedData = null;
                         if (responseContent != null)
                         {
-                            deserializedObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+                            deserializedData = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
                         }
 
                         return new WebResponse
                         {
                             StatusCode = (int)response.StatusCode,
-                            Data = deserializedObject
+                            Data = deserializedData
                         };
                     }
                 }
@@ -212,16 +214,20 @@ namespace GeminaCSExamples
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
 
-                        Dictionary<string, object> deserializedObject = null;
+                        Dictionary<string, object> deserializedData = null;
+                        Prediction deserializedPrediction = null;
                         if (responseContent != null)
                         {
-                            deserializedObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+                            deserializedData = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+                            deserializedPrediction = JsonSerializer.Deserialize<Prediction>(responseContent);
+
                         }
 
                         return new WebResponse
                         {
                             StatusCode = (int)response.StatusCode,
-                            Data = deserializedObject
+                            Data = deserializedData,
+                            Prediction = deserializedPrediction
                         };
                     }
                 }
@@ -241,5 +247,78 @@ namespace GeminaCSExamples
     {
         public int StatusCode { get; set; }
         public Dictionary<string, object> Data { get; set; }
+        public Prediction Prediction { get; set; }
+    }
+
+    public class Coordinates
+    {
+        [JsonPropertyName("original")]
+        public List<List<int>> Original { get; set; }
+        [JsonPropertyName("normalized")]
+        public List<List<int>> Normalized { get; set; }
+    }
+
+    public abstract class GeneralValue<T>
+    {
+        [JsonPropertyName("coordinates")]
+        public Coordinates Coordinates { get; set; }
+        [JsonPropertyName("confidence")]
+        public string Confidence { get; set; }
+        [JsonPropertyName("value")]
+        public abstract T Value { get; set; }
+    }
+
+    public class LongValue : GeneralValue<long>
+    {
+        [JsonPropertyName("value")]
+        public override long Value { get; set; }
+    }
+
+    public class IntValue : GeneralValue<int>
+    {
+        [JsonPropertyName("value")]
+        public override int Value { get; set; }
+    }
+
+    public class DoubleValue : GeneralValue<double>
+    {
+        [JsonPropertyName("value")]
+        public override double Value { get; set; }
+    }
+
+    public class StringValue : GeneralValue<string>
+    {
+        [JsonPropertyName("value")]
+        public override string Value { get; set; }
+    }
+
+    public class Prediction
+    {
+        [JsonPropertyName("total_amount")]
+        public DoubleValue TotalAmount { get; set; }
+        [JsonPropertyName("vat_amount")]
+        public DoubleValue VatAmount { get; set; }
+        [JsonPropertyName("created")]
+        public DateTime Created { get; set; }
+        [JsonPropertyName("timestamp")]
+        public double TimeStamp { get; set; }
+        [JsonPropertyName("primary_document_type")]
+        public StringValue PrimaryDocumentType { get; set; }
+        [JsonPropertyName("external_id")]
+        public string ExternalId { get; set; }
+        [JsonPropertyName("currency")]
+        public StringValue Currency { get; set; }
+        [JsonPropertyName("business_number")]
+        public IntValue BusinessNumber { get; set; }
+        [JsonPropertyName("issue_date")]
+        public StringValue IssueDate { get; set; }
+        [JsonPropertyName("document_type")]
+        public StringValue DocumentType { get; set; }
+        [JsonPropertyName("document_number")]
+        public LongValue DocumentNumber { get; set; }
+        [JsonPropertyName("net_amount")]
+        public DoubleValue NetAmount { get; set; }
+        [JsonPropertyName("supplier_name")]
+        public StringValue SupplierName { get; set; }
     }
 }
