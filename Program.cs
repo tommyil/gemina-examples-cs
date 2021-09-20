@@ -256,6 +256,8 @@ namespace GeminaCSExamples
         public List<List<int>> Original { get; set; }
         [JsonPropertyName("normalized")]
         public List<List<int>> Normalized { get; set; }
+        [JsonPropertyName("relative")]
+        public List<List<double>> Relative { get; set; }
     }
 
     public abstract class GeneralValue<T>
