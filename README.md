@@ -207,6 +207,18 @@ Here you retrieve a prediction for the invoice that you uploaded during the firs
 
 
 
+**Important Update - Retrieve Prediction as C# Object:**
+
+If you wish to retrieve the prediction as a C# Object (as opposed to a Json text), please follow the code example below:
+
+Object Declaration: https://github.com/tommyil/gemina-examples-cs/blob/master/Program.cs#L297
+
+Deserialization: https://github.com/tommyil/gemina-examples-cs/blob/master/Program.cs#L222
+
+
+
+**Retrieve Prediction as Json :**
+
 You have to wait until the document finished processing.
 
 Therefore you need to keep asking the server when the prediction is ready.
