@@ -316,6 +316,8 @@ namespace GeminaCSExamples
         public StringValue IssueDate { get; set; }
         [JsonPropertyName("document_type")]
         public StringValue DocumentType { get; set; }
+        [JsonPropertyName("expense_type")]
+        public StringValue ExpenseType { get; set; }
         [JsonPropertyName("document_number")]
         public LongValue DocumentNumber { get; set; }
         [JsonPropertyName("net_amount")]
