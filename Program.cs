@@ -318,6 +318,8 @@ namespace GeminaCSExamples
         public StringValue DocumentType { get; set; }
         [JsonPropertyName("expense_type")]
         public StringValue ExpenseType { get; set; }
+        [JsonPropertyName("payment_method")]
+        public StringValue PaymentMethod { get; set; }
         [JsonPropertyName("document_number")]
         public LongValue DocumentNumber { get; set; }
         [JsonPropertyName("net_amount")]
