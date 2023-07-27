@@ -9,6 +9,7 @@ using System.Text;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Text.Json.Serialization;
+using System.Globalization;
 
 namespace GeminaCSExamples
 {
@@ -91,6 +92,9 @@ namespace GeminaCSExamples
                 }
             }
             while (webResponse.StatusCode == 202 || webResponse.StatusCode == 404);
+
+            //webResponse = await UpdateDataLoop(invoiceId, webResponse.Prediction); // <-- Optional: Enable to activate DataLoop (https://github.com/tommyil/gemina-examples/blob/master/data_loop.md)
+            //PrintJson(webResponse.Data);
         }
 
         public static async Task<WebResponse> UploadImage(string invoicePath, string invoiceId)
@@ -241,6 +245,68 @@ namespace GeminaCSExamples
             else
                 Console.WriteLine("Received empty Json response.");
         }
+
+        public static async Task<WebResponse> UpdateDataLoop(string invoiceId, Prediction prediction)
+        {
+            var url = $"{GEMINA_API_URL}{BUSINESS_DOCUMENTS_URL}";
+            var token = $"Basic {API_KEY}"; //  Mind the space between 'Basic' and the API KEY
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                DateTime issue_date = DateTime.ParseExact(prediction.IssueDate.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                var jsonData = new Dictionary<string, object>
+                {
+                    { "client_id", CLIENT_ID },
+                    { "external_id", invoiceId },
+                    { "document_type", prediction.DocumentType.Value },
+                    { "total_amount", prediction.TotalAmount.Value },
+                    { "net_amount", prediction.NetAmount.Value },
+                    { "vat_amount", prediction.VatAmount.Value },
+                    { "document_number", prediction.DocumentNumber.Value.ToString() },
+                    { "issue_date", issue_date.ToString("yyyy-MM-dd") },
+                    { "business_number", prediction.BusinessNumber.Value.ToString() },
+                    { "supplier_name", prediction.SupplierName.Value },
+                    { "expense_type", prediction.ExpenseType.Value },
+                    { "payment_method", prediction.PaymentMethod.Value },
+                    { "currency", prediction.Currency.Value },
+                };
+
+                using (var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(url),
+                    Content = new StringContent(JsonSerializer.Serialize(jsonData), Encoding.UTF8, "application/json"),
+                })
+                {
+
+                    request.Headers.Add("Authorization", token);
+
+                    using (var response = await httpClient.SendAsync(request))
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+
+                        Dictionary<string, object> deserializedData = null;
+                        if (responseContent != null)
+                        {
+                            deserializedData = JsonSerializer.Deserialize<Dictionary<string, object>>(responseContent);
+
+                        }
+
+                        return new WebResponse
+                        {
+                            StatusCode = (int)response.StatusCode,
+                            Data = deserializedData,
+                        };
+                    }
+                }
+            }
+        }
+
     }
 
     public class WebResponse
