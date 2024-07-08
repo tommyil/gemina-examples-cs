@@ -270,6 +270,7 @@ namespace GeminaCSExamples
                     { "document_number", prediction.DocumentNumber.Value.ToString() },
                     { "issue_date", issue_date.ToString("yyyy-MM-dd") },
                     { "business_number", prediction.BusinessNumber.Value.ToString() },
+                    { "assignment_number", prediction.AssignmentNumber.Value },
                     { "supplier_name", prediction.SupplierName.Value },
                     { "expense_type", prediction.ExpenseType.Value },
                     { "payment_method", prediction.PaymentMethod.Value },
@@ -378,6 +379,8 @@ namespace GeminaCSExamples
         public StringValue Currency { get; set; }
         [JsonPropertyName("business_number")]
         public IntValue BusinessNumber { get; set; }
+        [JsonPropertyName("assignment_number")]
+        public StringValue AssignmentNumber { get; set; }
         [JsonPropertyName("issue_date")]
         public StringValue IssueDate { get; set; }
         [JsonPropertyName("document_type")]

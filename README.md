@@ -319,22 +319,23 @@ while (webResponse.StatusCode == 202 || webResponse.StatusCode == 404);
 ```bash
 Can't find image. Let's give it 1 seconds to create before we try again...
 Image is still being processed.Sleeping for 1 second before the next attempt.
-Successfully retrieved Prediction for Invoice Image ex_id_28b5c5ca-6d09-4a2e-982b-5fa70647477b:
-external_id: ex_id_28b5c5ca-6d09-4a2e-982b-5fa70647477b
-expense_type: {"coordinates": null, "confidence": "medium", "value": "other"}
-primary_document_type: {"coordinates": null, "confidence": "high", "value": "invoice"}
-supplier_name: {"coordinates": null, "confidence": "high", "value": "\u05d7\u05de\u05e9\u05ea \u05d4\u05e4\u05e1\u05d9\u05dd \u05e7\u05dc\u05d9\u05df \u05d1\u05e2\"\u05de"}
-vat_amount: {"coordinates": {"relative": [[0.15, 0.52], [0.19, 0.52], [0.19, 0.53], [0.15, 0.53]], "original": [[251, 1206], [321, 1207], [321, 1231], [251, 1230]], "normalized": [[189, 906], [241, 907], [241, 925], [189, 924]]}, "confidence": "high", "value": 228.41}
-timestamp: 1641395921.978729
-issue_date: {"coordinates": {"relative": [[0.63, 0.46], [0.71, 0.47], [0.71, 0.48], [0.63, 0.48]], "original": [[1041, 1086], [1178, 1090], [1176, 1117], [1039, 1113]], "normalized": [[782, 816], [885, 819], [884, 839], [781, 836]]}, "confidence": "high", "value": "31/08/2020"}
-currency: {"coordinates": null, "confidence": "medium", "value": "ils"}
-document_number: {"coordinates": {"relative": [[0.33, 0.16], [0.4, 0.17], [0.4, 0.19], [0.33, 0.18]], "original": [[548, 385], [667, 389], [665, 434], [547, 430]], "normalized": [[412, 289], [501, 292], [500, 326], [411, 323]]}, "confidence": "high", "value": 7890}
-document_type: {"coordinates": null, "confidence": "high", "value": "invoice"}
-payment_method: {"coordinates": null, "confidence": "medium", "value": "wire_transfer"}
-created: 2022-01-05T15:18:41.978729
-total_amount: {"coordinates": {"relative": [[0.13, 0.53], [0.2, 0.53], [0.2, 0.55], [0.13, 0.55]], "original": [[208, 1246], [322, 1246], [322, 1275], [208, 1275]], "normalized": [[156, 936], [242, 936], [242, 958], [156, 958]]}, "confidence": "high", "value": 1572.0}
-net_amount: {"coordinates": {"relative": [[0.14, 0.5], [0.2, 0.5], [0.2, 0.51], [0.14, 0.51]], "original": [[230, 1167], [325, 1167], [325, 1192], [230, 1192]], "normalized": [[173, 877], [244, 877], [244, 896], [173, 896]]}, "confidence": "high", "value": 1343.59}
-business_number: {"coordinates": {"relative": [[0.15, 0.11], [0.25, 0.11], [0.25, 0.13], [0.15, 0.13]], "original": [[242, 265], [405, 268], [405, 297], [242, 294]], "normalized": [[182, 199], [304, 201], [304, 223], [182, 221]]}, "confidence": "high", "value": 514713288}
+Successfully retrieved Prediction for Invoice Image ex_id_2989d813-4266-4d98-9159-151c61a02748:
+supplier_name: {"coordinates": null, "value": "\u05d7\u05de\u05e9\u05ea \u05d4\u05e4\u05e1\u05d9\u05dd \u05e7\u05dc\u05d9\u05df \u05d1\u05e2\"\u05de", "confidence": "high"}
+assignment_number: {"coordinates": null, "value": null, "confidence": "high"}
+vat_amount: {"coordinates": {"normalized": [[190, 908], [243, 908], [243, 926], [190, 926]], "original": [[253, 1208], [323, 1208], [323, 1232], [253, 1232]], "relative": [[0.15, 0.52], [0.2, 0.52], [0.2, 0.53], [0.15, 0.53]]}, "value": 228.41, "confidence": "high"}
+timestamp: 1720472428.00519
+total_amount: {"coordinates": {"normalized": [[159, 936], [243, 935], [243, 959], [159, 960]], "original": [[212, 1246], [323, 1244], [323, 1276], [212, 1278]], "relative": [[0.13, 0.53], [0.2, 0.53], [0.2, 0.55], [0.13, 0.55]]}, "value": 1572.0, "confidence": "high"}
+payment_method: {"coordinates": null, "value": "cheque", "confidence": "medium"}
+document_type: {"coordinates": null, "value": "invoice", "confidence": "high"}
+issue_date: {"coordinates": {"normalized": [[174, 407], [264, 409], [263, 431], [173, 429]], "original": [[232, 542], [351, 544], [350, 574], [230, 571]], "relative": [[0.14, 0.23], [0.21, 0.23], [0.21, 0.25], [0.14, 0.24]]}, "value": "31/08/2020", "confidence": "high"}
+document_number: {"coordinates": {"normalized": [[415, 284], [500, 285], [499, 329], [414, 328]], "original": [[552, 378], [665, 379], [664, 438], [551, 437]], "relative": [[0.33, 0.16], [0.4, 0.16], [0.4, 0.19], [0.33, 0.19]]}, "value": 7890, "confidence": "high"}
+net_amount: {"coordinates": {"normalized": [[175, 877], [245, 877], [245, 899], [175, 899]], "original": [[233, 1167], [326, 1167], [326, 1196], [233, 1196]], "relative": [[0.14, 0.5], [0.2, 0.5], [0.2, 0.51], [0.14, 0.51]]}, "value": 1343.59, "confidence": "high"}
+external_id: ex_id_2989d813-4266-4d98-9159-151c61a02748
+business_number: {"coordinates": {"normalized": [[182, 198], [303, 200], [303, 224], [182, 222]], "original": [[242, 264], [403, 266], [403, 298], [242, 295]], "relative": [[0.15, 0.11], [0.24, 0.11], [0.24, 0.13], [0.15, 0.13]]}, "value": 514713288, "confidence": "high"}
+currency: {"coordinates": null, "value": "ils", "confidence": "medium"}
+created: 2024-07-08T21:00:28.005190
+primary_document_type: {"coordinates": null, "value": "invoice", "confidence": "high"}
+expense_type: {"coordinates": null, "value": "other", "confidence": "medium"}
 The Prediction Object Data is stored in this object: GeminaCSExamples.Prediction
 ```
 
