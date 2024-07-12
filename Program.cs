@@ -107,6 +107,7 @@ namespace GeminaCSExamples
             {
                 { "client_id", CLIENT_ID },
                 { "external_id", invoiceId },
+                { "use_llm", true },  // <-- Optional, for LLM Support. For more details: https://github.com/tommyil/gemina-examples/blob/master/llm_integration.md
                 { "file", Convert.ToBase64String(fileContent)},
             };
 
@@ -155,6 +156,7 @@ namespace GeminaCSExamples
             {
                 { "client_id", CLIENT_ID },
                 { "external_id", invoiceId },
+                { "use_llm", true },  // <-- Optional, for LLM Support. For more details: https://github.com/tommyil/gemina-examples/blob/master/llm_integration.md
                 { "url", invoiceURL},
             };
 

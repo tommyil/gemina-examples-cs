@@ -70,6 +70,7 @@ public static async Task<WebResponse> UploadImage(string invoicePath, string inv
     {
         { "client_id", CLIENT_ID },
         { "external_id", invoiceId },
+        { "use_llm", true },  // <-- Optional, for LLM Support. For more details: https://github.com/tommyil/gemina-examples/blob/master/llm_integration.md
         { "file", Convert.ToBase64String(fileContent)},
     };
 
@@ -124,6 +125,7 @@ public static async Task<WebResponse> UploadWebImage(string invoiceURL, string i
     {
         { "client_id", CLIENT_ID },
         { "external_id", invoiceId },
+        { "use_llm", true },  // <-- Optional, for LLM Support. For more details: https://github.com/tommyil/gemina-examples/blob/master/llm_integration.md
         { "url", invoiceURL},
     };
 
@@ -394,7 +396,11 @@ Response Types - https://github.com/tommyil/gemina-examples/blob/master/response
 
 Data Loop - https://github.com/tommyil/gemina-examples/blob/master/data_loop.md
 
+LLM Integration - https://github.com/tommyil/gemina-examples/blob/master/llm_integration.md
+
 Python Implementation - https://github.com/tommyil/gemina-examples
+
+Node.js/TypeScript Implementation - https://github.com/tommyil/gemina-examples-ts
 
 
 
